@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserDomicilio;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'fecha_nacimiento',
+        'edad'
     ];
 
     /**
@@ -42,4 +46,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function domicilio()
+    {
+        return $this->hasOne(UserDomicilio::class,'user_id','id');
+    }
+
+    public function getEdadAttribute()
+    {
+        $edad = Carbon::parse($this->fecha_nacimiento)->age;
+        return $edad;
+    }
 }
