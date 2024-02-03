@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\UserDomicilio;
+use App\Models\User;
 
-class UserDomicilioSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class UserDomicilioSeeder extends Seeder
     public function run(): void
     {
         //
-        UserDomicilio::factory()->count(100)->create();
+        User::factory()->count(100)->create();
     }
 }
